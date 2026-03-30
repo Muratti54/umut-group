@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umut Group | Gayrimenkul Yönetim Sistemi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #c9a227;
+            --accent-dark: #b08a10;
+            --accent-light: #fdf8ec;
+            --bg: #f9f9f7;
+            --card-bg: #ffffff;
+            --text: #111111;
+            --text-muted: #6b7280;
+            --border: #e8e4da;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        /* HEADER */
+        header {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: var(--shadow);
+        }
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo span { color: var(--accent); }
+        .logo small {
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--text-muted);
+            display: block;
+        }
+        nav { display: flex; gap: 12px; align-items: center; }
+        .btn {
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+        }
+        .btn-outline {
+            border: 1px solid var(--border);
+            background: white;
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+        }
+        .btn-accent:hover {
+            background: var(--accent-dark);
+        }
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 12px;
+        }
+
+        /* HERO */
+        .hero {
+            background: white;
+            text-align: center;
+            padding: 50px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p {
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+        .search-bar {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            overflow: hidden;
+            background: white;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+        .search-bar select {
+            padding: 14px;
+            border: none;
+            border-left: 1px solid var(--border);
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .search-bar button {
+            padding: 14px 28px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 32px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat strong {
+            font-size: 28px;
+            display: block;
+            color: var(--accent);
+        }
+        .stat span {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* MAIN */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 28px;
+        }
+
+        /* FILTER SIDEBAR */
+        .filter-sidebar {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+        }
+        .filter-sidebar h3 {
+            font-size: 14px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        .filter-group label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .filter-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            outline: none;
+        }
+        .filter-input:focus {
+            border-color: var(--accent);
+        }
+
+        /* LISTINGS GRID */
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .listing-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .listing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .card-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .listing-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+        }
+        .badge-satilik { background: var(--accent); }
+        .badge-kiralik { background: #374151; }
+        .card-body {
+            padding: 16px;
+        }
+        .card-price {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .card-title {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .card-location {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .card-specs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .card-spec {
+            font-size: 12px;
+            background: #f3f4f6;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+        .card-advisor {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .card-detail-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-light);
+            color: var(--accent);
+            border: none;
+            border-top: 1px solid var(--border);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .card-detail-btn:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .modal {
+            background: white;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+        .modal-lg {
+            max-width: 900px;
+        }
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+        }
+        .modal-header h3 {
+            font-size: 18px;
+        }
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .modal-body {
+            padding: 24px;
+        }
+
+        /* FORM */
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+        }
+        .form-control:focus {
+            border-color: var(--accent);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .error-message {
+            color: var(--danger);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* FOTOĞRAF YÜKLEME ALANI */
+        .photo-upload-area {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: var(--bg);
+            margin-bottom: 16px;
+        }
+        .photo-upload-area:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+        }
+        .photo-upload-area input {
+            display: none;
+        }
+        .photo-upload-area .upload-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        .photo-previews {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .photo-preview {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 2px solid var(--border);
+        }
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .photo-preview.primary {
+            border-color: var(--accent);
+            position: relative;
+        }
+        .photo-preview.primary::after {
+            content: "★ KAPAK";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            font-size: 9px;
+            text-align: center;
+            padding: 2px;
+        }
+        .photo-preview-remove {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .photo-preview-remove:hover {
+            background: var(--danger);
+        }
+        .photo-preview-star {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* AUTH TABS */
+        .auth-tabs {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+        .auth-tab {
+            padding: 10px 0;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        .auth-tab.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* PAGINATION */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+        }
+        .page-btn {
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .page-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* TOAST */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1100;
+        }
+        .toast {
+            padding: 12px 20px;
+            background: #1f2937;
+            color: white;
+            border-radius: 10px;
+            margin-top: 8px;
+            animation: slideIn 0.3s ease;
+            font-size: 14px;
+        }
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+        .toast.info { background: var(--accent); }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .hidden { display: none; }
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 1000px) {
+            .listings-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .main-container { grid-template-columns: 1fr; }
+            .filter-sidebar { display: none; }
+            .listings-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="#" class="logo" onclick="resetApp(); return false;">UMUT <span>GROUP</span><small>İnşaat ve Gayrimenkul Danışmanlığı</small></a>
+        <nav>
+            <button class="btn btn-outline" onclick="exportToExcel()">📊 Excel</button>
+            <button class="btn btn-accent" id="addListingBtn" onclick="openAddListing()">+ İlan Ekle</button>
+            <button class="btn btn-outline" id="authBtn" onclick="openAuthModal()">🔐 Giriş Yap</button>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>GELECEĞE <span>UMUTLA</span> BAKIN</h1>
+    <p>Umut Group ile güvenilir emlak danışmanlığı — <strong>0530 471 32 71</strong></p>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="İlçe, şehir veya ilan başlığı ara..." onkeyup="searchListings()">
+        <select id="typeFilter" onchange="searchListings()">
+            <option value="">Tüm İlanlar</option>
+            <option value="satilik">Satılık</option>
+            <option value="kiralik">Kiralık</option>
+        </select>
+        <button onclick="searchListings()">🔍 Ara</button>
+    </div>
+    <div class="stats">
+        <div class="stat"><strong id="totalCount">0</strong><span>Toplam İlan</span></div>
+        <div class="stat"><strong id="saleCount">0</strong><span>Satılık</span></div>
+        <div class="stat"><strong id="rentCount">0</strong><span>Kiralık</span></div>
+    </div>
+</section>
+
+<div class="main-container">
+    <aside class="filter-sidebar">
+        <h3>🔍 FİLTRELER</h3>
+        <div class="filter-group">
+            <label>Şehir</label>
+            <input type="text" id="cityFilter" class="filter-input" placeholder="Şehir ara..." onkeyup="filterListings()">
+        </div>
+        <div class="filter-group">
+            <label>Fiyat Aralığı (TL)</label>
+            <div style="display: flex; gap: 8px;">
+                <input type="number" id="minPrice" class="filter-input" placeholder="Min" onkeyup="filterListings()">
+                <input type="number" id="maxPrice" class="filter-input" placeholder="Max" onkeyup="filterListings()">
+            </div>
+        </div>
+        <div class="filter-group">
+            <label>Metrekare</label>
+            <div style="display: flex; gap: 8px;">
+                <input type="number" id="minSqm" class="filter-input" placeholder="Min m²" onkeyup="filterListings()">
+                <input type="number" id="maxSqm" class="filter-input" placeholder="Max m²" onkeyup="filterListings()">
+            </div>
+        </div>
+        <button class="btn btn-outline" style="width:100%" onclick="clearFilters()">🗑️ Filtreleri Temizle</button>
+    </aside>
+
+    <main class="content-area">
+        <div class="listings-grid" id="listingsGrid">
+            <div class="empty-state">📭 Yükleniyor...</div>
+        </div>
+        <div class="pagination" id="pagination"></div>
+    </main>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3>🔐 Üye Girişi / Kayıt</h3>
+            <button class="modal-close" onclick="closeAuthModal()">✕</button>
+        </div>
+        <div class="modal-body">
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Giriş Yap</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Kayıt Ol</button>
+            </div>
+            <div id="loginForm">
+                <div class="form-group">
+                    <label>E-posta</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="ornek@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="******">
+                </div>
+                <div id="loginError" class="error-message"></div>
+                <button class="btn btn-accent" style="width:100%; margin-top:12px;" onclick="login()">Giriş Yap</button>
+            </div>
+            <div id="registerForm" class="hidden">
+                <div class="form-group">
+                    <label>Ad Soyad</label>
+                    <input type="text" id="regName" class="form-control" placeholder="Ahmet Yılmaz">
+                </div>
+                <div class="form-group">
+                    <label>E-posta</label>
+                    <input type="email" id="regEmail" class="form-control" placeholder="ornek@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" id="regPhone" class="form-control" placeholder="0532 123 45 67">
+                </div>
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <input type="password" id="regPassword" class="form-control" placeholder="En az 6 karakter">
+                </div>
+                <div id="registerError" class="error-message"></div>
+                <button class="btn btn-accent" style="width:100%; margin-top:12px;" onclick="register()">Kayıt Ol</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- İLAN EKLEME MODAL (RESİM YÜKLEMELİ) -->
+<div class="modal-overlay" id="addListingModal">
+    <div class="modal modal-lg">
+        <div class="modal-header">
+            <h3>➕ Yeni İlan Ekle</h3>
+            <button class="modal-close" onclick="closeAddModal()">✕</button>
+        </div>
+        <div class="modal-body">
+            <form id="listingForm" onsubmit="saveListing(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>İlan Tipi *</label>
+                        <select id="listingType" class="form-control" required>
+                            <option value="satilik">Satılık</option>
+                            <option value="kiralik">Kiralık</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Başlık *</label>
+                        <input type="text" id="listingTitle" class="form-control" required placeholder="3+1 Lüks Daire">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fiyat (TL) *</label>
+                        <input type="number" id="listingPrice" class="form-control" required placeholder="4500000">
+                    </div>
+                    <div class="form-group">
+                        <label>m² *</label>
+                        <input type="number" id="listingSqm" class="form-control" required placeholder="145">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Oda Sayısı</label>
+                        <select id="listingRooms" class="form-control">
+                            <option value="1+1">1+1</option>
+                            <option value="2+1">2+1</option>
+                            <option value="3+1" selected>3+1</option>
+                            <option value="4+1">4+1</option>
+                            <option value="5+1">5+1</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bina Yaşı</label>
+                        <select id="listingAge" class="form-control">
+                            <option value="0">Sıfır (0-1 yıl)</option>
+                            <option value="1">1-5 yıl</option>
+                            <option value="5">5-10 yıl</option>
+                            <option value="10">10+ yıl</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Kat</label>
+                        <input type="text" id="listingFloor" class="form-control" placeholder="3/8">
+                    </div>
+                    <div class="form-group">
+                        <label>Şehir *</label>
+                        <input type="text" id="listingCity" class="form-control" required placeholder="İstanbul">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>İlçe *</label>
+                        <input type="text" id="listingDistrict" class="form-control" required placeholder="Kadıköy">
+                    </div>
+                    <div class="form-group">
+                        <label>Adres</label>
+                        <input type="text" id="listingAddress" class="form-control" placeholder="Moda Caddesi">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Danışman Adı *</label>
+                        <input type="text" id="listingAdvisor" class="form-control" required placeholder="Ahmet Yılmaz">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon *</label>
+                        <input type="tel" id="listingPhone" class="form-control" required placeholder="0532 123 45 67">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <textarea id="listingDesc" class="form-control" rows="3" placeholder="İlan detaylarını girin..."></textarea>
+                </div>
+                
+                <!-- FOTOĞRAF YÜKLEME ALANI -->
+                <div class="form-group">
+                    <label>📸 Fotoğraflar (İlk fotoğraf kapak olur)</label>
+                    <div class="photo-upload-area" onclick="document.getElementById('photoInput').click()">
+                        <div class="upload-icon">📷</div>
+                        <div><strong>Fotoğraf Yüklemek İçin Tıkla</strong></div>
+                        <div style="font-size:12px; margin-top:8px;">PNG, JPG, JPEG formatları desteklenir. Birden fazla fotoğraf seçebilirsiniz.</div>
+                        <input type="file" id="photoInput" accept="image/*" multiple onchange="handlePhotoUpload(event)">
+                    </div>
+                    <div class="photo-previews" id="photoPreviews"></div>
+                </div>
+                
+                <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+                    <button type="button" class="btn btn-outline" onclick="closeAddModal()">İptal</button>
+                    <button type="submit" class="btn btn-accent">✓ İlanı Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- DETAY MODAL -->
+<div class="modal-overlay" id="detailModal">
+    <div class="modal modal-lg" id="detailContent"></div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<footer>
+    <strong>Umut Group</strong> — İnşaat ve Gayrimenkul Danışmanlığı © 2024 | Tel: 0530 471 32 71
+</footer>
+
+<script>
+// ==================== VERİTABANI (localStorage) ====================
+const STORAGE_USERS = 'umut_users';
+const STORAGE_LISTINGS = 'umut_listings';
+
+// Demo veriler
+const DEMO_LISTINGS = [
+    {
+        id: '1', user_id: '1', type: 'satilik', title: '3+1 Lüks Daire - Deniz Manzaralı',
+        price: 4500000, sqm: 145, rooms: '3+1', building_age: '5', floor: '6/12',
+        city: 'İstanbul', district: 'Kadıköy', address: 'Moda Caddesi',
+        description: 'Kadıköy Moda\'da deniz manzaralı, tamamen yenilenmiş 3+1 daire. Amerikan mutfak, ebeveyn banyosu, kapalı otopark. 7/24 güvenlik.',
+        phone: '05321234567', advisor: 'Ahmet Yılmaz',
+        photos: ['https://picsum.photos/id/104/800/600', 'https://picsum.photos/id/106/800/600'],
+        views: 245, created_at: '2024-01-15'
+    },
+    {
+        id: '2', user_id: '1', type: 'kiralik', title: '2+1 Modern Daire - Merkezi Konum',
+        price: 28000, sqm: 90, rooms: '2+1', building_age: '1', floor: '4/8',
+        city: 'İstanbul', district: 'Beşiktaş', address: 'Barbaros Bulvarı',
+        description: 'Beşiktaş\'ın kalbinde, sıfır daire. Merkezi ısıtma, asansör, güvenlik kamerası.',
+        phone: '05331234567', advisor: 'Fatma Kaya',
+        photos: ['https://picsum.photos/id/108/800/600', 'https://picsum.photos/id/109/800/600'],
+        views: 189, created_at: '2024-02-10'
+    }
+];
+
+let users = [];
+let listings = [];
+let currentUser = null;
+let filteredListings = [];
+let currentPage = 1;
+const ITEMS_PER_PAGE = 6;
+let uploadedPhotos = []; // Base64 formatında fotoğraflar
+
+// ==================== YARDIMCI FONKSİYONLAR ====================
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+function loadData() {
+    const storedUsers = localStorage.getItem(STORAGE_USERS);
+    if (storedUsers) {
+        users = JSON.parse(storedUsers);
+    } else {
+        users = [
+            { id: '1', name: 'Ahmet Yılmaz', email: 'ahmet@umut.com', password: '123456', phone: '05321234567' }
+        ];
+        localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
+    }
+    
+    const storedListings = localStorage.getItem(STORAGE_LISTINGS);
+    if (storedListings) {
+        listings = JSON.parse(storedListings);
+    } else {
+        listings = DEMO_LISTINGS;
+        localStorage.setItem(STORAGE_LISTINGS, JSON.stringify(listings));
+    }
+    
+    const savedUser = sessionStorage.getItem('currentUser');
+    if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+    }
+    updateUI();
+    filterListings();
+}
+
+function saveListings() {
+    localStorage.setItem(STORAGE_LISTINGS, JSON.stringify(listings));
+}
+
+function updateUI() {
+    const authBtn = document.getElementById('authBtn');
+    const addBtn = document.getElementById('addListingBtn');
+    
+    if (currentUser) {
+        authBtn.innerHTML = `👤 ${currentUser.name.split(' ')[0]} | Çıkış`;
+        authBtn.onclick = () => logout();
+        addBtn.disabled = false;
+        addBtn.classList.remove('btn-outline');
+        addBtn.classList.add('btn-accent');
+        addBtn.style.opacity = '1';
+    } else {
+        authBtn.innerHTML = '🔐 Giriş Yap';
+        authBtn.onclick = () => openAuthModal();
+        addBtn.disabled = true;
+        addBtn.classList.remove('btn-accent');
+        addBtn.classList.add('btn-outline');
+        addBtn.style.opacity = '0.6';
+    }
+}
+
+// ==================== FOTOĞRAF YÜKLEME ====================
+function handlePhotoUpload(event) {
+    const files = Array.from(event.target.files);
+    
+    files.forEach(file => {
+        if (!file.type.startsWith('image/')) return;
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Resmi sıkıştır (kaliteyi düşürerek boyutu küçült)
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+                const maxSize = 800;
+                
+                if (width > maxSize || height > maxSize) {
+                    if (width > height) {
+                        height = Math.round(height * maxSize / width);
+                        width = maxSize;
+                    } else {
+                        width = Math.round(width * maxSize / height);
+                        height = maxSize;
+                    }
+                }
+                
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                uploadedPhotos.push(compressedDataUrl);
+                renderPhotoPreviews();
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+    event.target.value = '';
+}
+
+function renderPhotoPreviews() {
+    const container = document.getElementById('photoPreviews');
+    if (!container) return;
+    
+    if (uploadedPhotos.length === 0) {
+        container.innerHTML = '';
+        return;
+    }
+    
+    container.innerHTML = uploadedPhotos.map((photo, index) => `
+        <div class="photo-preview ${index === 0 ? 'primary' : ''}">
+            <img src="${photo}" alt="Fotoğraf ${index + 1}">
+            <button type="button" class="photo-preview-remove" onclick="removePhoto(${index})">✕</button>
+            ${index !== 0 ? `<button type="button" class="photo-preview-star" onclick="setAsPrimary(${index})">★</button>` : ''}
+        </div>
+    `).join('');
+}
+
+function removePhoto(index) {
+    uploadedPhotos.splice(index, 1);
+    renderPhotoPreviews();
+}
+
+function setAsPrimary(index) {
+    if (index === 0) return;
+    const photo = uploadedPhotos[index];
+    uploadedPhotos.splice(index, 1);
+    uploadedPhotos.unshift(photo);
+    renderPhotoPreviews();
+}
+
+// ==================== AUTH ====================
+function openAuthModal() {
+    document.getElementById('authModal').classList.add('active');
+    document.getElementById('loginForm').classList.remove('hidden');
+    document.getElementById('registerForm').classList.add('hidden');
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').classList.remove('active');
+}
+
+function switchAuthTab(tab) {
+    const tabs = document.querySelectorAll('.auth-tab');
+    tabs.forEach(t => t.classList.remove('active'));
+    
+    if (tab === 'login') {
+        document.getElementById('loginForm').classList.remove('hidden');
+        document.getElementById('registerForm').classList.add('hidden');
+        tabs[0].classList.add('active');
+    } else {
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('registerForm').classList.remove('hidden');
+        tabs[1].classList.add('active');
+    }
+}
+
+function login() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const user = users.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+        currentUser = { id: user.id, name: user.name, email: user.email };
+        sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+        closeAuthModal();
+        updateUI();
+        showToast(`Hoş geldiniz, ${user.name}!`, 'success');
+    } else {
+        document.getElementById('loginError').textContent = 'E-posta veya şifre hatalı!';
+    }
+}
+
+function register() {
+    const name = document.getElementById('regName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const phone = document.getElementById('regPhone').value.trim();
+    const password = document.getElementById('regPassword').value;
+    
+    if (!name || !email || password.length < 6) {
+        document.getElementById('registerError').textContent = 'Tüm alanları doldurun ve şifre en az 6 karakter olsun!';
+        return;
+    }
+    
+    if (users.find(u => u.email === email)) {
+        document.getElementById('registerError').textContent = 'Bu e-posta zaten kayıtlı!';
+        return;
+    }
+    
+    const newUser = { id: Date.now().toString(), name, email, password, phone };
+    users.push(newUser);
+    localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
+    
+    currentUser = { id: newUser.id, name: newUser.name, email: newUser.email };
+    sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
+    closeAuthModal();
+    updateUI();
+    showToast(`Kayıt başarılı! Hoş geldiniz ${name}!`, 'success');
+}
+
+function logout() {
+    currentUser = null;
+    sessionStorage.removeItem('currentUser');
+    updateUI();
+    showToast('Çıkış yapıldı', 'info');
+}
+
+// ==================== İLANLAR ====================
+function openAddListing() {
+    if (!currentUser) {
+        showToast('İlan eklemek için giriş yapın!', 'error');
+        openAuthModal();
+        return;
+    }
+    uploadedPhotos = [];
+    renderPhotoPreviews();
+    document.getElementById('addListingModal').classList.add('active');
+    document.getElementById('listingForm').reset();
+}
+
+function closeAddModal() {
+    document.getElementById('addListingModal').classList.remove('active');
+}
+
+function saveListing(event) {
+    event.preventDefault();
+    
+    if (!currentUser) {
+        showToast('Lütfen giriş yapın!', 'error');
+        return;
+    }
+    
+    if (uploadedPhotos.length === 0) {
+        showToast('En az bir fotoğraf yükleyin!', 'error');
+        return;
+    }
+    
+    const newListing = {
+        id: Date.now().toString(),
+        user_id: currentUser.id,
+        type: document.getElementById('listingType').value,
+        title: document.getElementById('listingTitle').value.trim(),
+        price: parseInt(document.getElementById('listingPrice').value),
+        sqm: parseInt(document.getElementById('listingSqm').value),
+        rooms: document.getElementById('listingRooms').value,
+        building_age: document.getElementById('listingAge').value,
+        floor: document.getElementById('listingFloor').value,
+        city: document.getElementById('listingCity').value.trim(),
+        district: document.getElementById('listingDistrict').value.trim(),
+        address: document.getElementById('listingAddress').value,
+        description: document.getElementById('listingDesc').value,
+        phone: document.getElementById('listingPhone').value.trim(),
+        advisor: document.getElementById('listingAdvisor').value.trim(),
+        photos: [...uploadedPhotos],
+        views: 0,
+        created_at: new Date().toISOString().split('T')[0]
+    };
+    
+    listings.unshift(newListing);
+    saveListings();
+    uploadedPhotos = [];
+    closeAddModal();
+    filterListings();
+    showToast('İlan başarıyla eklendi!', 'success');
+}
+
+function filterListings() {
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const type = document.getElementById('typeFilter').value;
+    const city = document.getElementById('cityFilter').value.toLowerCase();
+    const minPrice = parseInt(document.getElementById('minPrice').value) || 0;
+    const maxPrice = parseInt(document.getElementById('maxPrice').value) || Infinity;
+    const minSqm = parseInt(document.getElementById('minSqm').value) || 0;
+    const maxSqm = parseInt(document.getElementById('maxSqm').value) || Infinity;
+    
+    filteredListings = listings.filter(listing => {
+        if (type && listing.type !== type) return false;
+        if (city && !listing.city.toLowerCase().includes(city)) return false;
+        if (listing.price < minPrice || listing.price > maxPrice) return false;
+        if (listing.sqm < minSqm || listing.sqm > maxSqm) return false;
+        if (search && !listing.title.toLowerCase().includes(search) && !listing.district.toLowerCase().includes(search)) return false;
+        return true;
+    });
+    
+    document.getElementById('totalCount').textContent = filteredListings.length;
+    document.getElementById('saleCount').textContent = filteredListings.filter(l => l.type === 'satilik').length;
+    document.getElementById('rentCount').textContent = filteredListings.filter(l => l.type === 'kiralik').length;
+    
+    currentPage = 1;
+    renderListings();
+}
+
+function searchListings() { filterListings(); }
+function clearFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('typeFilter').value = '';
+    document.getElementById('cityFilter').value = '';
+    document.getElementById('minPrice').value = '';
+    document.getElementById('maxPrice').value = '';
+    document.getElementById('minSqm').value = '';
+    document.getElementById('maxSqm').value = '';
+    filterListings();
+}
+
+function renderListings() {
+    const grid = document.getElementById('listingsGrid');
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const paginated = filteredListings.slice(start, start + ITEMS_PER_PAGE);
+    
+    if (paginated.length === 0) {
+        grid.innerHTML = '<div class="empty-state">📭 İlan bulunamadı</div>';
+        document.getElementById('pagination').innerHTML = '';
+        return;
+    }
+    
+    grid.innerHTML = paginated.map(listing => `
+        <div class="listing-card" onclick="showDetail('${listing.id}')">
+            <div class="card-image">
+                <img src="${listing.photos[0]}" alt="${listing.title}">
+                <span class="card-badge ${listing.type === 'satilik' ? 'badge-satilik' : 'badge-kiralik'}">
+                    ${listing.type === 'satilik' ? 'Satılık' : 'Kiralık'}
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="card-price">${listing.price.toLocaleString('tr-TR')} TL${listing.type === 'kiralik' ? '/ay' : ''}</div>
+                <div class="card-title">${listing.title}</div>
+                <div class="card-location">📍 ${listing.district}, ${listing.city}</div>
+                <div class="card-specs">
+                    <div class="card-spec">🏠 ${listing.rooms}</div>
+                    <div class="card-spec">📏 ${listing.sqm} m²</div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-advisor">👤 ${listing.advisor}</div>
+                    <div>👁️ ${listing.views || 0}</div>
+                </div>
+            </div>
+            <button class="card-detail-btn" onclick="event.stopPropagation(); showDetail('${listing.id}')">Detayları Gör →</button>
+        </div>
+    `).join('');
+    
+    const totalPages = Math.ceil(filteredListings.length / ITEMS_PER_PAGE);
+    const container = document.getElementById('pagination');
+    if (totalPages > 1) {
+        let html = '';
+        for (let i = 1; i <= totalPages; i++) {
+            html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+        }
+        container.innerHTML = html;
+    } else {
+        container.innerHTML = '';
+    }
+}
+
+function goToPage(page) {
+    currentPage = page;
+    renderListings();
+}
+
+function showDetail(id) {
+    const listing = listings.find(l => l.id === id);
+    if (!listing) return;
+    
+    listing.views = (listing.views || 0) + 1;
+    saveListings();
+    
+    const modal = document.getElementById('detailModal');
+    const content = document.getElementById('detailContent');
+    
+    content.innerHTML = `
+        <div class="modal-header">
+            <h3>🏠 ${listing.title}</h3>
+            <button class="modal-close" onclick="closeDetail()">✕</button>
+        </div>
+        <div class="modal-body">
+            <div style="margin-bottom: 20px;">
+                <img src="${listing.photos[0]}" style="width:100%; height:280px; object-fit:cover; border-radius:12px;">
+                ${listing.photos.length > 1 ? `<div style="display:flex; gap:8px; margin-top:12px; overflow-x:auto;">
+                    ${listing.photos.map(p => `<img src="${p}" style="width:80px; height:60px; object-fit:cover; border-radius:8px; cursor:pointer;" onclick="changeMainPhoto('${listing.id}', this.src)">`).join('')}
+                </div>` : ''}
+            </div>
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+                <div>
+                    <span class="card-badge ${listing.type === 'satilik' ? 'badge-satilik' : 'badge-kiralik'}" style="position:relative;">${listing.type === 'satilik' ? 'SATILIK' : 'KİRALIK'}</span>
+                    <h2 style="margin-top: 12px;">${listing.title}</h2>
+                    <p>📍 ${listing.district}, ${listing.city} ${listing.address ? '— ' + listing.address : ''}</p>
+                </div>
+                <div style="font-size: 28px; font-weight: 700; color: var(--accent);">${listing.price.toLocaleString('tr-TR')} TL${listing.type === 'kiralik' ? '<span style="font-size:14px;">/ay</span>' : ''}</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+                <div style="background:#f3f4f6; padding:12px; border-radius:10px; text-align:center;"><div>🏠</div><strong>${listing.rooms}</strong><div style="font-size:11px;">Oda</div></div>
+                <div style="background:#f3f4f6; padding:12px; border-radius:10px; text-align:center;"><div>📏</div><strong>${listing.sqm} m²</strong><div style="font-size:11px;">Alan</div></div>
+                <div style="background:#f3f4f6; padding:12px; border-radius:10px; text-align:center;"><div>🏗️</div><strong>${listing.floor || '—'}</strong><div style="font-size:11px;">Kat</div></div>
+                <div style="background:#f3f4f6; padding:12px; border-radius:10px; text-align:center;"><div>📅</div><strong>${listing.building_age === '0' ? 'Sıfır' : listing.building_age + ' yıl'}</strong><div style="font-size:11px;">Bina Yaşı</div></div>
+            </div>
+            <div style="margin-bottom: 24px;">
+                <h4>📝 Açıklama</h4>
+                <p style="color:#4b5563;">${listing.description || 'Açıklama girilmemiş.'}</p>
+            </div>
+            <div style="background:#f3f4f6; padding:20px; border-radius:12px;">
+                <h4>📞 İletişim</h4>
+                <div style="display:flex; align-items:center; gap:12px; margin:12px 0;">
+                    <div style="width:48px; height:48px; background:var(--accent); border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold;">${listing.advisor.charAt(0)}</div>
+                    <div><strong>${listing.advisor}</strong><br><span style="font-size:12px;">Gayrimenkul Danışmanı</span></div>
+                </div>
+                <div style="font-size:20px; font-weight:600; margin:12px 0;">📞 ${listing.phone}</div>
+                <a href="https://wa.me/90${listing.phone.replace(/\\D/g, '')}" target="_blank" class="btn btn-accent" style="display:inline-block; text-decoration:none;">💬 WhatsApp ile iletişim</a>
+            </div>
+        </div>
+    `;
+    modal.classList.add('active');
+}
+
+function changeMainPhoto(listingId, newPhotoUrl) {
+    const listing = listings.find(l => l.id === listingId);
+    if (listing) {
+        const index = listing.photos.indexOf(newPhotoUrl);
+        if (index > 0) {
+            const photo = listing.photos.splice(index, 1)[0];
+            listing.photos.unshift(photo);
+            saveListings();
+            showDetail(listingId);
+        }
+    }
+}
+
+function closeDetail() {
+    document.getElementById('detailModal').classList.remove('active');
+}
+
+function exportToExcel() {
+    if (listings.length === 0) {
+        showToast('Dışa aktarılacak ilan yok!', 'error');
+        return;
+    }
+    let csv = "ID,Tip,Başlık,Fiyat,m²,Oda,Şehir,İlçe,Danışman,Telefon,Tarih\n";
+    listings.forEach(l => {
+        csv += `"${l.id}","${l.type === 'satilik' ? 'Satılık' : 'Kiralık'}","${l.title}",${l.price},${l.sqm},"${l.rooms}","${l.city}","${l.district}","${l.advisor}","${l.phone}","${l.created_at}"\n`;
+    });
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = `umut_ilanlar_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+    showToast('Excel dosyası indirildi!', 'success');
+}
+
+function resetApp() {
+    clearFilters();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadData();
+});
+</script>
+</body>
+</html>
